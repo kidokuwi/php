@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset(
         die("Connection failed: " . $conn->connect_error);
     }
 
-    # mysql -uadmin -pk3HGicEbpEyw -h<host> -P<port>
+    # mysql -u(user here) -p(put password here :D ) -h<host> -P<port>
 
     #insert INTO users (username, password) VALUES ("admin", "123");
 
