@@ -1,5 +1,5 @@
 <?php
-
+ # C:\Users\1idok\website1
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset($_POST['password']))
@@ -18,21 +18,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username']) && isset(
         die("Connection failed: " . $conn->connect_error);
     }
 
-    # mysql -u(user here) -p(put password here :D ) -h<host> -P<port>
+    # mysql -u -p(password here) -h<host> -P<port>
 
-    #insert INTO users (username, password) VALUES ("admin", "123");
+    #docker exec -it website1 mysql -u -p(password)
+    #use website;
+    #show tables;
+    #select * from users;
+
+    #insert INTO users (username, password) VALUES ("user", "password");
 
     $sql_query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 
     $result = $conn->query($sql_query);
 
-    if ($result->num_rows == 1 && (!(str_contains($username, "'")) || !(str_contains($password, "'")))) {
-
+    if ($result->num_rows >= 1) { # && (!(str_contains($username, "'")) || !(str_contains($password, "'")))
 
         $row = $result->fetch_object();
         $id = $row->id;
+        $password = $row->password;
 
-        $error = "Login successful - $id";
+        $error = "Login successful the id is: $id and your password is: $password";
 
 
 
